@@ -13,6 +13,7 @@ class GlobalSettings {
       timerTick: 300,
       showRuntime: false,
       speedFormat: 'hour',
+      windowsToTabs: false,
     }, items => {
       self._settings = items;
     });
@@ -44,5 +45,9 @@ class GlobalSettings {
 
   get showRuntime() {
     return this._settings.showRuntime;
+  }
+
+  get windowsToTabs() {
+    return this._settings.windowsToTabs;
   }
 }
