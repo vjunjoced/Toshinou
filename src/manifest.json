@@ -19,6 +19,7 @@
         "js/utils/Injector.js",
         "js/utils/Variables.js",
         "js/utils/DragAndDrop.js",
+        "js/utils/TabsHelper.js",
         "js/preferences/Settings.js",
         "js/preferences/GlobalSettings.js",
         "js/utils/math/Vector2D.js",

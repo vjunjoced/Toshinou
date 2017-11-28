@@ -5,8 +5,60 @@
 const HEADER_HEIGHT = 40;
 
 class WindowFactory {
+
     static createWindow(params) {
 
+        if (!window.mainFrameWindow) {
+            window.mainFrameWindow = this.windowsStructure({text: "Windows", isMain: true})[0];
+
+            if (window.globalSettings.windowsToTabs) {
+                $(window.mainFrameWindow).addClass('tabs');
+                jQuery('<div>', {'class': 'headers'}).appendTo(window.mainFrameWindow);
+            }
+
+
+        }
+
+        if (window.globalSettings.windowsToTabs) {
+            return this.tabsStructure(params);
+        } else {
+            return this.windowsStructure(params);
+        }
+
+    }
+
+    static tabsStructure(params) {
+
+        let allHeaders = $('.headers', window.mainFrameWindow);
+        let tabsCount = $('.header', allHeaders).length;
+
+        let header = jQuery('<h4>', {
+            'class': 'header',
+            'title': params.text || 'Untitled',
+            'text': params.text[0] || 'U'
+        }).appendTo(allHeaders);
+
+        header.attr('data-href', `tab${tabsCount}`);
+
+        let content = jQuery('<div>', {
+            'class': 'content'
+        }).appendTo(window.mainFrameWindow);
+
+        content.attr('data-target', `tab${tabsCount}`);
+        content.attr('data-tab', `true`);
+
+        if (tabsCount === 0) {
+            $(header).addClass('active');
+            $(content).addClass('active');
+        }
+
+        new TabsHelper(header[0]);
+
+        return content;
+
+    }
+
+    static windowsStructure(params) {
         const pane = jQuery('<div>', {
             width: params.width || 400,
             height: (params.height + HEADER_HEIGHT) || '',
@@ -14,7 +66,7 @@ class WindowFactory {
             css: {
                 backgroundColor: 'transparent',
             },
-        }).appendTo(params.isMain ? 'body' : this.mainFrame());
+        }).appendTo(params.isMain ? 'body' : window.mainFrameWindow);
 
         const headerCol = ColorConverter.hexToRgb(window.globalSettings.headerColor);
         const header = jQuery('<h4>', {
@@ -57,14 +109,6 @@ class WindowFactory {
         });
 
         return content;
-    }
-
-    static mainFrame() {
-        if (!window.mainFrameWindow) {
-            window.mainFrameWindow = this.createWindow({text: "Windows", isMain: true})[0];
-        }
-
-        return window.mainFrameWindow;
     }
 
 }
