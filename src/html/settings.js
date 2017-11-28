@@ -12,13 +12,14 @@ function saveOptions(e) {
     timerTick: $("#timerTick").val(),
     showRuntime: $("#showRuntime").prop('checked'),
     speedFormat: $('input[name="speedFormat"]:checked').val(),
+    windowsToTabs: $("#windowsToTabs").prop('checked'),
   };
 
   chrome.storage.local.set(elements);
 }
 
 function restore() {
-  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime", "speedFormat"];
+  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime", "speedFormat", "windowsToTabs"];
 
   var onGet = items => {
 
@@ -37,6 +38,9 @@ function restore() {
     if (items.speedFormat) {
       let sel =`#speedFormat_${items.speedFormat}`;
       $(sel).prop('checked', true);
+    }
+    if (items.windowsToTabs) {
+      $("#windowsToTabs").prop('checked', true);
     }
   };
 
