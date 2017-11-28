@@ -18,6 +18,7 @@
         "js/utils/ResourcesManager.js",
         "js/utils/Injector.js",
         "js/utils/Variables.js",
+        "js/utils/DragAndDrop.js",
         "js/preferences/Settings.js",
         "js/preferences/GlobalSettings.js",
         "js/utils/math/Vector2D.js",

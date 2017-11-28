@@ -1,79 +1,70 @@
 /*
-Created by Freshek on 07.10.2017
-*/
-
-// Proposal: Rename all "window" mentions to "pane" in order to have
-// less confusion with JS window object.
+ Created by Freshek on 07.10.2017
+ */
 
 const HEADER_HEIGHT = 40;
-const ANIMATION_DURATION_MS = 400;
 
 class WindowFactory {
-  static createWindow(params) {
-    const pane = jQuery('<div>', {
-      width: params.width || 400,
-      height: (params.height + HEADER_HEIGHT) || '',
-      'class': 'window',
-      css: {
-        backgroundColor: 'transparent',
-        position: 'fixed',
-      },
-    }).appendTo('body');
+    static createWindow(params) {
 
-    const headerCol = ColorConverter.hexToRgb(window.globalSettings.headerColor);
-    const header = jQuery('<h4>', {
-      text: params.text || 'Untitled',
-      'class': 'header',
-      css: {
-        backgroundColor: ColorConverter.combine(headerCol.r, headerCol.g, headerCol.b, window.globalSettings.headerOpacity),
-      },
-    }).appendTo(pane);
+        const pane = jQuery('<div>', {
+            width: params.width || 400,
+            height: (params.height + HEADER_HEIGHT) || '',
+            'class': 'window',
+            css: {
+                backgroundColor: 'transparent',
+            },
+        }).appendTo(params.isMain ? 'body' : this.mainFrame());
 
-    // TODO: Custom scrollbar
-    const contentColor = ColorConverter.hexToRgb(window.globalSettings.windowColor);
-    const content = jQuery('<div>', {
-      'class': 'content',
-      css: {
-        maxHeight: params.maxHeight || '',
-        backgroundColor: ColorConverter.combine(contentColor.r, contentColor.g, contentColor.b, window.globalSettings.windowOpacity),
-      },
-    }).appendTo(pane);
+        const headerCol = ColorConverter.hexToRgb(window.globalSettings.headerColor);
+        const header = jQuery('<h4>', {
+            text: params.text || 'Untitled',
+            'class': 'header',
+            css: {
+                backgroundColor: ColorConverter.combine(headerCol.r, headerCol.g, headerCol.b, window.globalSettings.headerOpacity),
+            },
+        }).appendTo(pane);
 
-    const minimizeBtn = jQuery('<span>', {
-      text: '_',
-      'class': 'minimize-btn',
-    }).appendTo(header);
+        // TODO: Custom scrollbar
+        const contentColor = ColorConverter.hexToRgb(window.globalSettings.windowColor);
+        const content = jQuery('<div>', {
+            'class': `content${params.isMain ? '' : ' minimized'}`,
+            css: {
+                maxHeight: params.maxHeight || '',
+                backgroundColor: ColorConverter.combine(contentColor.r, contentColor.g, contentColor.b, window.globalSettings.windowOpacity),
+            },
+        }).appendTo(pane);
 
-    minimizeBtn.click(() => {
-      if (content.is(':visible')) {
-        content.slideUp(ANIMATION_DURATION_MS)
-        .animate({
-          opacity: 0,
-        }, {
-          queue: false,
-          duration: ANIMATION_DURATION_MS,
+        const minimizeBtn = jQuery('<span>', {
+            text: '_',
+            'class': 'minimize-btn',
+        }).appendTo(header);
+
+        let dragAndDrop = new DragAndDrop(header[0], params.isMain);
+
+        dragAndDrop.isMainFrame = params.isMain ? true : false;
+
+        minimizeBtn.click(() => {
+            if (content.hasClass('minimized')) {
+                content.removeClass('minimized');
+                dragAndDrop.on();
+            } else {
+                content.addClass('minimized');
+                if (!params.isMain) {
+                    dragAndDrop.off();
+                }
+            }
         });
-      } else {
-        content.slideDown(ANIMATION_DURATION_MS)
-        .animate({
-          opacity: window.globalSettings.windowOpacity ,
-        }, {
-          queue: false,
-          duration: ANIMATION_DURATION_MS,
-        });
-      }
-    });
 
-    pane.draggable({
-      handle: header,
-      drag: (e, ui) => {
-        ui.position.left = Math.max(-pane.width() / 2, ui.position.left);
-        ui.position.left = Math.min(ui.position.left, $(window).width() - pane.width() / 2);
-        ui.position.top = Math.max(-HEADER_HEIGHT / 2, ui.position.top);
-        ui.position.top = Math.min(ui.position.top, $(window).height() - HEADER_HEIGHT / 2);
-      }
-    });
+        return content;
+    }
 
-    return content;
-  }
+    static mainFrame() {
+        if (!window.mainFrameWindow) {
+            window.mainFrameWindow = this.createWindow({text: "Windows", isMain: true})[0];
+        }
+
+        return window.mainFrameWindow;
+    }
+
 }
