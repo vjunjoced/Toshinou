@@ -72,9 +72,9 @@ class NpcSettingsWindow {
       "( Uber Annihilator )",
       "( Uber Battleray )",
       "<=< Gygerthrall >=>",
-      "<=< Plagued Gygerthrall >=>",
       "<=< Blighted Gygerthrall >=>",
       "-=[ Blighted Kristallon ]=-",
+      "<=< Plagued Gygerthrall >=>",
       "-=[ Plagued Kristallin ]=-",
       "-=[ Plague Rocket ]=-"
     ];
