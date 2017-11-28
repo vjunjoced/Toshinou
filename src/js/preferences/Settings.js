@@ -11,6 +11,7 @@ class Settings {
     this._lockPlayers = lockPlayers === true;
     this._killNpcs = killNpcs === true;
     this._npcs = [];
+    this.npcCircleRadius = 500;
   }
 
   get collectBoxes() {

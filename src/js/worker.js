@@ -116,16 +116,16 @@ function logic() {
       var box = api.findNearestBox();
       var ship = api.findNearestShip();
 
-      if ((!ship || ship.distance > 1000 || !ship.ship) && (box && box.box)) {
+      if ((ship.distance > 1000 || !ship.ship) && (box.box)) {
         api.collectBox(box.box);
         api.targetBoxHash = box.box.hash;
         return;
-      } else if (ship.ship && ship && ship.distance < 1000 && window.settings.killNpcs) {
+      } else if (ship.ship && ship.distance < 1000 && window.settings.killNpcs) {
         api.lockShip(ship.ship);
         api.triedToLock = true;
         api.targetShip = ship.ship;
         return;
-      } else if (ship.ship && ship && window.settings.killNpcs) {
+      } else if (ship.ship && window.settings.killNpcs) {
         ship.ship.update();
         api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
         api.targetShip = ship.ship;
@@ -173,7 +173,7 @@ function logic() {
     y = MathUtils.random(58, 12830);
   }
 
-  if (api.targetShip && window.settings.killNpcs) {
+  if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
     api.targetShip.update();
     var dist = api.targetShip.distanceTo(window.hero.position);
 

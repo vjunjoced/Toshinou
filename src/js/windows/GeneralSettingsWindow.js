@@ -47,24 +47,24 @@ class GeneralSettingsWindow {
           window.settings.circleNpc = this.checked;
         }
       },
-      {
-        name: 'collectionSensitivity',
-        labelText: 'Collection sensitivity <span> (100%)</span>',
-        type: 'range',
-        appendTo: this.botSettingsWindow,
-        labelBefore: true,
-        attrs: {
-          min: 1,
-          max: 100,
-          step: 1,
-          value: 100,
-        }
-        ,
-        event: function (ev) {
-          window.settings.collectionSensitivity = this.value;
-          $('span:last-child', this.label).text(' (' + this.value + '%)');
-        }
-      },
+      // {
+      //   name: 'collectionSensitivity',
+      //   labelText: 'Collection sensitivity <span> (100%)</span>',
+      //   type: 'range',
+      //   appendTo: this.botSettingsWindow,
+      //   labelBefore: true,
+      //   attrs: {
+      //     min: 1,
+      //     max: 100,
+      //     step: 1,
+      //     value: 100,
+      //   }
+      //   ,
+      //   event: function (ev) {
+      //     window.settings.collectionSensitivity = this.value;
+      //     $('span:last-child', this.label).text(' (' + this.value + '%)');
+      //   }
+      // },
       {
         name: 'npcCircleRadius',
         labelText: ' Circle radius <span> (500px)</span>',
