@@ -1,6 +1,6 @@
 /*
-Created by Freshek on 31.10.2017
-*/
+ Created by Freshek on 31.10.2017
+ */
 
 class GlobalSettings {
   constructor() {
@@ -10,7 +10,9 @@ class GlobalSettings {
       headerOpacity: "0.9",
       windowColor: "#191919",
       windowOpacity: "0.8",
-      timerTick: 300
+      timerTick: 300,
+      showRuntime: false,
+      speedFormat: 'hour',
     }, items => {
       self._settings = items;
     });
@@ -34,5 +36,13 @@ class GlobalSettings {
 
   get timerTick() {
     return this._settings.timerTick;
+  }
+
+  get speedFormat(){
+    return this._settings.speedFormat;
+  }
+
+  get showRuntime() {
+    return this._settings.showRuntime;
   }
 }
