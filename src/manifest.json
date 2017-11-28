@@ -53,6 +53,7 @@
         "js/handlers/commands/ShipSelectedHandler.js",
         "js/handlers/commands/MessagesHandler.js",
         "js/handlers/commands/HeroDiedHandler.js",
+        "js/handlers/commands/HeroUpdateHitpointsHandler.js",
         "js/Api.js",
         "js/ControlFactory.js",
         "js/worker.js"

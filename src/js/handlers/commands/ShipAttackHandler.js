@@ -11,10 +11,15 @@ class ShipAttackHandler {
     this._handler = function(e, a) {
       var shipAttackCmd = JSON.parse(e.detail);
       // TODO: Make this cleaner – create a Ship object
-      if (shipAttackCmd[Variables.attackerId] == window.userId) { //attacker id
+      if (shipAttackCmd[Variables.attackerId] == window.hero.id) {
         window.attackWindow.hp(shipAttackCmd[Variables.attackHp]);
         window.attackWindow.shd(shipAttackCmd[Variables.attackShd]);
         window.attackWindow.targetName(a.ships[shipAttackCmd[Variables.attackedId]].name);
+      }
+
+      if (shipAttackCmd[Variables.attackedId] == window.hero.id) {
+        window.hero.hp = shipAttackCmd[Variables.attackHp];
+        window.hero.shd = shipAttackCmd[Variables.attackShd];
       }
     }
   }

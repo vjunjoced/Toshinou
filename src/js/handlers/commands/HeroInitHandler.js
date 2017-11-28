@@ -23,8 +23,14 @@ class HeroInitHandler {
       var heroJson = JSON.parse(e.detail);
 
       if (window.hero == null) {
-        window.hero = new Hero(heroJson.x, heroJson.y, heroJson.factionId);
+        window.hero = new Hero(heroJson.x, heroJson.y, heroJson.factionId, heroJson.userId);
       }
+
+      window.hero.maxHp = heroJson[Variables.heroInitMaxHp];
+      window.hero.hp = heroJson[Variables.heroInitHp];
+      window.hero.maxShd = heroJson[Variables.heroInitMaxShd];
+      window.hero.shd = heroJson["shield"];
+
       f();
       window.initialized = true;
     }

@@ -31,4 +31,24 @@ class Variables {
   static get shipDestoyedId() {
     return "_-r2h";
   }
+
+  static get heroInitMaxHp() {
+    return "_-Z2g";
+  }
+
+  static get heroInitMaxShd() {
+    return "_-x3q";
+  }
+
+  static get heroInitHp() {
+    return "_-81B";
+  }
+
+  static get hpUpdateMaxHp() {
+    return "_-D3h";
+  }
+
+  static get hpUpdateHp() {
+    return "_-O2J";
+  }
 }

@@ -83,6 +83,23 @@ class GeneralSettingsWindow {
           $('span:last-child', this.label).text(' (' + this.value + 'px)');
         }
       },
+      {
+        name: 'repairWhenHpIsLowerThanPercent',
+        labelText: ' Repair when HP < <span> (10%)</span>',
+        type: 'range',
+        appendTo: this.botSettingsWindow,
+        labelBefore: true,
+        attrs: {
+          min: 0,
+          max: 100,
+          step: 1,
+          value: 10
+        },
+        event: function (ev) {
+          window.settings.repairWhenHpIsLowerThanPercent = this.value;
+          $('span:last-child', this.label).text(' (' + this.value + '%)');
+        }
+      }
     ];
 
     controls.forEach((control)=>{

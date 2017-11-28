@@ -116,6 +116,21 @@ class Api {
     return {ship: finalShip, distance: minDist};
   }
 
+  findNearestGate() {
+    var minDist = 100000;
+    var finalGate;
+
+    this.gates.forEach(gate => {
+      var dist = window.hero.distanceTo(gate.position);
+      if (dist < minDist) {
+        finalGate = gate;
+        minDist = dist;
+      }
+    });
+
+    return {gate: finalGate, distance: minDist};
+  }
+
   markHeroAsDead() {
     this.heroDied = true;
     Injector.injectScript("window.heroDied = true;");
