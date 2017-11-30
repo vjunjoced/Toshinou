@@ -41,7 +41,10 @@ class WindowFactory {
         header.attr('data-href', `tab${tabsCount}`);
 
         let content = jQuery('<div>', {
-            'class': 'content'
+            'class': 'content',
+            css: {
+                maxHeight: params.maxHeight || '',
+               }
         }).appendTo(window.mainFrameWindow);
 
         content.attr('data-target', `tab${tabsCount}`);
