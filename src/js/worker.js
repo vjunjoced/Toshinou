@@ -167,9 +167,13 @@ function logic() {
   }
 
   if (api.targetBoxHash && $.now() - api.collectTime > 5000) {
-    delete api.boxes[api.targetBoxHash];
-    api.blackListHash(api.targetBoxHash);
-    api.targetBoxHash = null;
+    if (api.boxes[api.targetBoxHash].distanceTo(window.hero.position) > 1000) {
+      api.collecTime = $.now();
+    } else {
+      delete api.boxes[api.targetBoxHash];
+      api.blackListHash(api.targetBoxHash);
+      api.targetBoxHash = null;
+    }
   }
 
   //HACK: npc stucks fallback
