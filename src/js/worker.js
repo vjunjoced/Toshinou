@@ -28,6 +28,7 @@ $(document).ready(function() {
 
   window.settings = new Settings();
   window.initialized = false;
+  window.reviveCount = 0;
 
   window.movementDone = true;
 
