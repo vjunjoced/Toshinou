@@ -51,4 +51,16 @@ class Variables {
   static get hpUpdateHp() {
     return "_-L2n";
   }
+
+  static get selectMaxHp() {
+    return "_-25F";
+  }
+
+  static get selectMaxShd() {
+    return "_-jb";
+  }
+
+  static get selectHp() {
+    return "_-L2n";
+  }
 }

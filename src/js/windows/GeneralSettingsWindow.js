@@ -84,6 +84,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'dontCircleWhenHpBelow15Percent',
+        labelText: "Don't circle when HP < 15%",
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.dontCircleWhenHpBelow15Percent = this.checked;
+        }
+      },
+      {
         name: 'repairWhenHpIsLowerThanPercent',
         labelText: ' Repair when HP < <span> (10%)</span>',
         type: 'range',

@@ -153,7 +153,7 @@ function logic() {
     if (!api.triedToLock && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id)) {
       api.targetShip.update();
       var dist = api.targetShip.distanceTo(window.hero.position);
-      if (dist < 1000) {
+      if (dist < 600) {
         api.lockShip(api.targetShip);
         api.triedToLock = true;
         return;
@@ -202,10 +202,15 @@ function logic() {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
       y = api.targetShip.position.y - MathUtils.random(-50, 50);
       api.lastMovement = $.now();
+    } else if (api.lockedShip && api.lockedShip.percentOfHp < 15 && api.lockedShip.id == api.targetShip.id && window.settings.dontCircleWhenHpBelow15Percent) {
+      if (dist > 450) {
+        x = api.targetShip.position.x + MathUtils.random(-30, 30);
+        y = api.targetShip.position.y + MathUtils.random(-30, 30);
+      }
     } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
       y = api.targetShip.position.y + MathUtils.random(-200, 200);
-    } else {
+    } else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
       if (window.settings.circleNpc) {
         //I'm not completely sure about this algorithm
         let enemy = api.targetShip.position;
@@ -215,6 +220,11 @@ function logic() {
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
       }
+    } else { // ??? there must be something wrong with our locked npc
+      api.targetShip = null;
+      api.attacking = false;
+      api.triedToLock = false;
+      api.lockedShip = null;
     }
   }
 
