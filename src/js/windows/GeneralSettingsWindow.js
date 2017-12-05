@@ -84,6 +84,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'dontCircleWhenHpBelow15Percent',
+        labelText: "Don't circle when HP < 15%",
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.dontCircleWhenHpBelow15Percent = this.checked;
+        }
+      },
+      {
         name: 'repairWhenHpIsLowerThanPercent',
         labelText: ' Repair when HP < <span> (10%)</span>',
         type: 'range',
@@ -98,6 +106,31 @@ class GeneralSettingsWindow {
         event: function (ev) {
           window.settings.repairWhenHpIsLowerThanPercent = this.value;
           $('span:last-child', this.label).text(' (' + this.value + '%)');
+        }
+      },
+      {
+        name: 'reviveAtGate',
+        labelText: 'Revive at the nearest gate',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.reviveAtGate = this.checked;
+        }
+      },
+      {
+        name: 'reviveLimit',
+        labelText: 'Revive limit <span> (5)</span>',
+        type: 'range',
+        appendTo: this.botSettingsWindow,
+        labelBefore: true,
+        attrs: {
+          min: 0,
+          max: 100,
+          step: 1,
+          value: 10
+        },
+        event: function () {
+          window.settings.reviveLimit = this.value;
+          $('span:last-child', this.label).text(' (' + this.value + ')');
         }
       }
     ];

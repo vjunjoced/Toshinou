@@ -71,6 +71,8 @@ class NpcSettingsWindow {
       "( Uber Saboteur )",
       "( Uber Annihilator )",
       "( Uber Battleray )",
+      "<=< Icy >=>",
+      "<=< Ice Meteoroid >=>",
       "<=< Gygerthrall >=>",
       "<=< Blighted Gygerthrall >=>",
       "-=[ Blighted Kristallon ]=-",
