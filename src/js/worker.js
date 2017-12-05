@@ -168,7 +168,8 @@ function logic() {
   }
 
   if (api.targetBoxHash && $.now() - api.collectTime > 5000) {
-    if (api.boxes[api.targetBoxHash].distanceTo(window.hero.position) > 1000) {
+    let box = api.boxes[api.targetBoxHash];
+    if (box && box.distanceTo(window.hero.position) > 1000) {
       api.collecTime = $.now();
     } else {
       delete api.boxes[api.targetBoxHash];
