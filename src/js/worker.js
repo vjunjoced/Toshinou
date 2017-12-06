@@ -113,7 +113,9 @@ function logic() {
   if (api.heroDied && api.isDisconected)
     return;
 
-  window.minimap.draw();
+  if(window.globalSettings.minimapShow){
+    window.minimap.draw();
+  }
 
   if (api.targetBoxHash == null && api.targetShip == null) {
     if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
