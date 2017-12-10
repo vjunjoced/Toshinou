@@ -162,6 +162,7 @@ function logic() {
 
     if (!api.attacking && api.lockedShip) {
       api.startLaserAttack();
+      api.lastAttack = $.now();
       api.attacking = true;
       return;
     }
@@ -179,7 +180,7 @@ function logic() {
   }
 
   //HACK: npc stucks fallback
-  if (api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) {
+  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || $.now() - api.lastAttack > 25000) {
     api.targetShip = null;
     api.attacking = false;
     api.triedToLock = false;
