@@ -5,7 +5,8 @@
 class GlobalSettings {
   constructor() {
     var self = this;
-    chrome.storage.local.get({
+
+    let defaultSettings = {
       headerColor: "#191919",
       headerOpacity: "0.9",
       windowColor: "#191919",
@@ -14,40 +15,31 @@ class GlobalSettings {
       showRuntime: false,
       speedFormat: 'hour',
       windowsToTabs: false,
-    }, items => {
-      self._settings = items;
+      minimapShow: true,
+      attackDetailsShow: true,
+      generalSettingsShow: true,
+      autolockShow: true,
+      npcSettingsShow: true,
+      statisticShow: true,
+    };
+
+    chrome.storage.local.get(null, items => {
+
+      let _settings = Object.assign(defaultSettings, items);
+
+      self._settings = _settings;
+
+      Object.keys(_settings).forEach((obj)=> {
+
+        Object.defineProperty(self, obj, {
+          get: function () {
+            return this._settings[obj];
+          }
+        });
+
+      });
+
     });
-  }
 
-  get headerColor() {
-    return this._settings.headerColor;
-  }
-
-  get headerOpacity() {
-    return this._settings.headerOpacity;
-  }
-
-  get windowColor() {
-    return this._settings.windowColor;
-  }
-
-  get windowOpacity() {
-    return this._settings.windowOpacity;
-  }
-
-  get timerTick() {
-    return this._settings.timerTick;
-  }
-
-  get speedFormat(){
-    return this._settings.speedFormat;
-  }
-
-  get showRuntime() {
-    return this._settings.showRuntime;
-  }
-
-  get windowsToTabs() {
-    return this._settings.windowsToTabs;
   }
 }
