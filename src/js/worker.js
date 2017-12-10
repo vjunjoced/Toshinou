@@ -58,22 +58,23 @@ function init() {
   if (window.initialized)
     return;
 
-  let windowsObjects = [
-    { name: 'minimap', class: Minimap, args: api,  show: window.globalSettings.minimapShow},
-    { name: 'attackWindow', class: AttackWindow, args: {}, show: window.globalSettings.attackDetailsShow},
-    { name: 'generalSettingsWindow', class: GeneralSettingsWindow, args: {}, show: window.globalSettings.generalSettingsShow},
-    { name: 'autolockWindow', class: AutolockWindow, args: {}, show: window.globalSettings.autolockShow},
-    { name: 'npcSettingsWindow', class: NpcSettingsWindow, args: {}, show: window.globalSettings.npcSettingsShow},
-    { name: 'statisticWindow', class: StatisticWindow, args: {}, show: window.globalSettings.statisticShow},
-  ];
+  window.minimap = new Minimap(api);
+  window.minimap.createWindow();
 
-  Object.keys(windowsObjects).forEach((item)=>{
-    if(item.show){
-      let CLassName = windowsObjects[item].class;
-      window[item.name] = new CLassName(item.args);
-      window[item.name].createWindow();
-    }
-  });
+  window.attackWindow = new AttackWindow();
+  window.attackWindow.createWindow();
+
+  window.generalSettingsWindow = new GeneralSettingsWindow();
+  window.generalSettingsWindow.createWindow();
+
+  window.autolockWindow = new AutolockWindow();
+  window.autolockWindow.createWindow();
+
+  window.npcSettingsWindow = new NpcSettingsWindow();
+  window.npcSettingsWindow.createWindow();
+
+  window.statisticWindow = new StatisticWindow();
+  window.statisticWindow.createWindow();
 
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
@@ -113,9 +114,7 @@ function logic() {
   if (api.heroDied && api.isDisconected)
     return;
 
-  if(window.globalSettings.minimapShow){
-    window.minimap.draw();
-  }
+  window.minimap.draw();
 
   if (api.targetBoxHash == null && api.targetShip == null) {
     if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
