@@ -63,4 +63,8 @@ class Variables {
   static get selectHp() {
     return "_-Up";
   }
+
+  static get clanDiplomacy() {
+    return "_-Nz";
+  }
 }
