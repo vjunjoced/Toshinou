@@ -82,6 +82,7 @@ class NpcSettingsWindow {
       "<=< Super Ice Meteoroid >=>",
       "-=[ Skoll ]=-",
       "<=< Skoll's Icy >=>",
+      "-=[ Santa -1100101 ]=-"<
       "<=< Gygerthrall >=>",
       "<=< Blighted Gygerthrall >=>",
       "-=[ Blighted Kristallon ]=-",
