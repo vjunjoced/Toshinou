@@ -4,7 +4,11 @@ Created by Freshek on 11.11.2017
 
 class NpcSettingsWindow {
   createWindow() {
-    this.npcSettingsWindow = WindowFactory.createWindow({ width: 300, maxHeight: 100, text: "Exclude NPC to attack" });
+    this.npcSettingsWindow = WindowFactory.createWindow({
+      width: 300,
+      maxHeight: 300,
+      text: "Exclude NPC to attack"
+    });
 
     let controls = [];
 
@@ -22,7 +26,7 @@ class NpcSettingsWindow {
     });
 
 
-    controls.forEach((control)=>{
+    controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
   }
