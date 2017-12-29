@@ -18,7 +18,7 @@ class Ship extends Movable {
   }
 
   get isEnemy() {
-    return (window.hero.factionId != this.factionId || this.clanDiplomacy == 3);
+    return (window.hero.factionId != this.factionId && this.clanDiplomacy == 3) || (window.hero.factionId == this.factionId && this.clanDiplomacy == 3) || (window.hero.factionId != this.factionId && this.clanDiplomacy == 0);
   }
 
   get percentOfHp() {
