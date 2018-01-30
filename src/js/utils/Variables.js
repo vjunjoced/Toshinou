@@ -5,62 +5,62 @@ Thanks for the idea to iNk
 
 class Variables {
   static get boxType() {
-    return "_-J3i";
+    return "_-24Q";
   }
 
   static get attackerId() {
-    return "_-23F";
+    return "_-f1U";
   }
 
   static get attackHp() {
-    return "_-z2j";
+    return "_-Q2q";
   }
 
   static get attackShd() {
-    return "_-w3R";
+    return "_-E4m";
   }
 
   static get attackedId() {
-    return "_-p1G";
+    return "_-D4B";
   }
 
   static get moveDuration() {
-    return "_-g1H";
+    return "_-Q2n";
   }
 
   static get shipDestoyedId() {
-    return "_-82k";
+    return "_-i1G";
   }
 
   static get heroInitMaxHp() {
-    return "_-r2";
+    return "_-L3f";
   }
 
   static get heroInitMaxShd() {
-    return "_-a2";
+    return "_-kS";
   }
 
   static get heroInitHp() {
-    return "_-N3E";
+    return "_-go";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-t1S";
+    return "_-B4S";
   }
 
   static get hpUpdateHp() {
-    return "_-T2B";
+    return "_-019";
   }
 
   static get selectMaxHp() {
-    return "_-t1S";
+    return "_-B4S";
   }
 
   static get selectMaxShd() {
-    return "_-a2";
+    return "_-kS";
   }
 
   static get selectHp() {
-    return "_-T2B";
+    return "_-019";
   }
 }
