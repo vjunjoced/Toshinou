@@ -65,6 +65,6 @@ class Variables {
   }
 
   static get clanDiplomacy() {
-    return "_-Nz";
+    return "_-s2I";
   }
 }
